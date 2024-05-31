@@ -1,5 +1,4 @@
-import { BsCartPlus } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const navLinks = <>
@@ -72,11 +71,16 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             
-                            <li><a>Update Profile</a></li>
+                            {/* <li><a>Update Profile</a></li>
                             <li><a>Dashboard</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a>Logout</a></li> */}
+                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Update Profile</Link></li>
+                            
+                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/myOrderedFood'}>Dashboard</Link></li>
+                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl" ><a>Logout</a></li>
                         </ul>
                     </div>
+                    <Link to={'/login'}><button className=" px-4 bg-cyan-400 text-white py-1 rounded-sm">Join Us</button></Link>
                 </div>
             </div>
         </div>
