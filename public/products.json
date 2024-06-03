@@ -1,0 +1,136 @@
+[
+    {
+      "name": "Crocin",
+      "genericName": "Paracetamol",
+      "description": "Paracetamol 500mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "GlaxoSmithKline",
+      "unit": "Mg",
+      "price": 2.00,
+      "discount": 0,
+      "image": "https://example.com/images/crocin.jpg"
+    },
+    {
+      "name": "Dolo 650",
+      "genericName": "Paracetamol",
+      "description": "Paracetamol 650mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Abbott Healthcare",
+      "unit": "Mg",
+      "price": 3.00,
+      "discount": 0,
+      "image": "https://example.com/images/dolo650.jpg"
+    },
+    {
+      "name": "Nurofen",
+      "genericName": "Ibuprofen",
+      "description": "Ibuprofen 200mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Reckitt Benckiser",
+      "unit": "Mg",
+      "price": 2.50,
+      "discount": 0,
+      "image": "https://example.com/images/nurofen.jpg"
+    },
+    {
+      "name": "Advil",
+      "genericName": "Ibuprofen",
+      "description": "Ibuprofen 400mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Pfizer",
+      "unit": "Mg",
+      "price": 3.50,
+      "discount": 0,
+      "image": "https://example.com/images/advil.jpg"
+    },
+    {
+      "name": "Tylenol",
+      "genericName": "Acetaminophen",
+      "description": "Acetaminophen 500mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Johnson & Johnson",
+      "unit": "Mg",
+      "price": 2.75,
+      "discount": 0,
+      "image": "https://example.com/images/tylenol.jpg"
+    },
+    {
+      "name": "Voltaren",
+      "genericName": "Diclofenac",
+      "description": "Diclofenac 50mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Novartis",
+      "unit": "Mg",
+      "price": 4.00,
+      "discount": 0,
+      "image": "https://example.com/images/voltaren.jpg"
+    },
+    {
+      "name": "Aleve",
+      "genericName": "Naproxen",
+      "description": "Naproxen 220mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Bayer",
+      "unit": "Mg",
+      "price": 3.00,
+      "discount": 0,
+      "image": "https://example.com/images/aleve.jpg"
+    },
+    {
+      "name": "Motrin",
+      "genericName": "Ibuprofen",
+      "description": "Ibuprofen 200mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Johnson & Johnson",
+      "unit": "Mg",
+      "price": 2.50,
+      "discount": 0,
+      "image": "https://example.com/images/motrin.jpg"
+    },
+    {
+      "name": "Panadol",
+      "genericName": "Paracetamol",
+      "description": "Paracetamol 500mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "GlaxoSmithKline",
+      "unit": "Mg",
+      "price": 2.00,
+      "discount": 0,
+      "image": "https://example.com/images/panadol.jpg"
+    },
+    {
+      "name": "Aspirin",
+      "genericName": "Aspirin",
+      "description": "Aspirin 325mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "Bayer",
+      "unit": "Mg",
+      "price": 1.50,
+      "discount": 0,
+      "image": "https://example.com/images/aspirin.jpg"
+    },
+    {
+      "name": "Excedrin",
+      "genericName": "Aspirin/Acetaminophen/Caffeine",
+      "description": "Aspirin 250mg, Acetaminophen 250mg, Caffeine 65mg tablets for pain relief",
+      "categoryName": "Tablet",
+      "company": "GSK Consumer Healthcare",
+      "unit": "Mg",
+      "price": 5.00,
+      "discount": 0,
+      "image": "https://example.com/images/excedrin.jpg"
+    },
+    {
+      "name": "Alka-Seltzer",
+      "genericName": "Aspirin",
+      "description": "Aspirin 325mg tablets for pain relief and heartburn",
+      "categoryName": "Tablet",
+      "company": "Bayer",
+      "unit": "Mg",
+      "price": 3.00,
+      "discount": 0,
+      "image": "https://example.com/images/alka-seltzer.jpg"
+    }
+]
+  
+  
