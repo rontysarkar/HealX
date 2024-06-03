@@ -1,54 +1,70 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image from '../../assets/image/login.jpg'
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 
 const Login = () => {
     const [keyValue, setKeyValue] = useState('')
     const [toggleEye, setToggleEye] = useState(false)
-    const {
-        register,
-        handleSubmit,
+    const { register, handleSubmit, } = useForm()
+    const { signInWithPop, logInUser, setLoading } = useAuth()
+    const Navigate = useNavigate()
 
-        // formState: { errors },
-    } = useForm()
 
-    // -----------------------------
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        logInUser(data.email, data.password)
+            .then(result => {
+                setLoading(false)
+                Navigate(location.state || "/")
+                toast.success('You have successfully Sign In')
+                console.log(result)
+            })
+            .catch(error=>{
+                setLoading(false)
+                console.error(error)
+                toast.error(error.message)
+            })
+    }
 
 
     const handleGoogle = () => {
-        // signInWithPop(googleProvider)
-        //     .then(result => {
-        //         setLoading(false)
-        //         Navigate(location.state || "/")
-        //         console.log(result)
-        //         toast.success('You have successfully registered.')
-        //     })
-        //     .catch(error => {
-        //         setLoading(false)
-        //         console.error(error)
-        //         toast.error(error.message)
-        //     })
+        signInWithPop(googleProvider)
+            .then(result => {
+                setLoading(false)
+                Navigate(location.state || "/")
+                console.log(result)
+
+                toast.success('You have successfully Sign In')
+            })
+            .catch(error => {
+                setLoading(false)
+                console.error(error)
+                toast.error(error.message)
+            })
     }
 
 
     const handleGithub = () => {
-        // signInWithPop(githubProvider)
-        //     .then(result => {
-        //         Navigate(location.state || "/")
-        //         setLoading(false)
-        //         console.log(result)
-        //         toast.success('You have successfully registered.')
-        //     })
-        //     .catch(error => {
-        //         setLoading(false)
-        //         console.log(error)
-        //         toast.error(error.message)
-        //     })
+        signInWithPop(githubProvider)
+            .then(result => {
+                Navigate(location.state || "/")
+                setLoading(false)
+                console.log(result)
+                toast.success('You have successfully registered.')
+            })
+            .catch(error => {
+                setLoading(false)
+                console.log(error)
+                toast.error(error.message)
+            })
     }
 
     return (
@@ -59,7 +75,7 @@ const Login = () => {
                 <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5 items-center ">
 
                     <img src={image} alt="" className="object-cover w-full rounded-md xl:col-span-3 dark:bg-gray-500" />
-                    
+
                     <div className="w-full px-6 py-12 rounded-md sm:px-12 md:px-16 xl:col-span-2  space-y-4" >
 
                         <div>

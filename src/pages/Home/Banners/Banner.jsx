@@ -6,13 +6,24 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-import img1 from '../../../assets/image/banner1.jpg'
-import img2 from '../../../assets/image/banner-2.jpg'
+
+
 import Slider from './Slider';
 
 const Banner = () => {
 
-  const images = [img1, img2]
+  const banners = [
+    {
+      id:1,
+      text:'Dedicated first aid kit for Families',
+      image:'https://i.ibb.co/xgtHGRZ/img1.webp'
+    },
+    {  
+      id:2,
+      text:'Dedicated first aid kit for Families',
+      image:'https://i.ibb.co/BcPt5Tf/1-2-Op-2u-g-TL1bq-So-Oh03-AVw.jpg'
+    }
+  ]
 
 
   return (
@@ -32,17 +43,10 @@ const Banner = () => {
         className="mySwiper"
       >
         {
-          images.map(img => <SwiperSlide key={img}><Slider  img={img} text='Dedicated first aid kit for Families'  /> </SwiperSlide>  )
+          banners.map(banner => <SwiperSlide key={banner.id}><Slider  banner={banner}  /> </SwiperSlide>  )
         }
 
-        {/* <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
+       
       </Swiper>
     </>
   );

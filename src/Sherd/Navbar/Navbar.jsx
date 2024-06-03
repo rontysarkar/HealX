@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+    const {user,LogOut} = useAuth()
+    
     const navLinks = <>
         <NavLink
             to="/"
@@ -63,24 +66,25 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="dropdown dropdown-end">
+                    {
+                        user ? <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                             </div>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
                             
-                            {/* <li><a>Update Profile</a></li>
-                            <li><a>Dashboard</a></li>
-                            <li><a>Logout</a></li> */}
+                           
                             <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Update Profile</Link></li>
                             
                             <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/myOrderedFood'}>Dashboard</Link></li>
-                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl" ><a>Logout</a></li>
+                            <li onClick={()=>LogOut()} className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl" ><a>Logout</a></li>
                         </ul>
-                    </div>
-                    <Link to={'/login'}><button className=" px-4 bg-cyan-400 text-white py-1 rounded-sm">Join Us</button></Link>
+                    </div> :  <Link to={'/login'}><button className=" px-4 bg-cyan-400 text-white py-1 rounded-sm">Join Us</button></Link>
+
+                    }
+                    
                 </div>
             </div>
         </div>
