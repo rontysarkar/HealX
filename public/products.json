@@ -8,7 +8,7 @@
       "unit": "Mg",
       "price": 2.00,
       "discount": 0,
-      "image": "https://example.com/images/crocin.jpg"
+      "image": "https://i.ibb.co/C6h0zn5/64fefaab2b2fe029123097b2-himalaya-purifying-neem-face-wash-with.jpg"
     },
     {
       "name": "Dolo 650",
@@ -47,12 +47,12 @@
       "name": "Tylenol",
       "genericName": "Acetaminophen",
       "description": "Acetaminophen 500mg tablets for pain relief",
-      "categoryName": "Tablet",
+      "": "Tablet",
       "company": "Johnson & Johnson",
       "unit": "Mg",
       "price": 2.75,
       "discount": 0,
-      "image": "https://example.com/images/tylenol.jpg"
+      "image": "https://i.ibb.co/p3mcKTN/a4567a81-7b3f-4e62-912f-cc9ee280b6e1-4777b9eea4b93abb295e918d3e7a7588.webp"
     },
     {
       "name": "Voltaren",
@@ -63,7 +63,7 @@
       "unit": "Mg",
       "price": 4.00,
       "discount": 0,
-      "image": "https://example.com/images/voltaren.jpg"
+      "image": "https://i.ibb.co/QY8xJG1/voltaren-50-mg-tab-1.webp"
     },
     {
       "name": "Aleve",
