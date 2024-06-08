@@ -4,41 +4,51 @@ import useAuth from "../../Hooks/useAuth";
 import { axiosCommon } from "../../Hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import useCart from "../../Hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 
 const Shop = () => {
-  const {user} = useAuth()
-  const [,refetch] =useCart()
+  const { user } = useAuth()
+  const [, refetch] = useCart()
   const [medicines] = useMedicine()
+  const navigate = useNavigate()
+
+  const handleAddCart = async (medicine) => {
+
+
+    if(user && user.email){
+      const medicineData = {
+        userName:user?.displayName,
+        userEmail:user?.email,
+        medicineCompany:medicine.company,
+        medicineImage:medicine.image,
+        medicineName:medicine.name,
+        medicinePrice:medicine.price,
+        medicineId:medicine._id,
+      }
   
-  const handleAddCart = async(medicine) =>{
-    console.log("clicking medicine",medicine)
-    
-    const medicineData = {
-      userName:user?.displayName,
-      userEmail:user?.email,
-      medicineName:medicine.name,
-      medicinePrice:medicine.price,
-      medicineId:medicine._id,
+      const {data} = await axiosCommon.post('cart',medicineData)
+      console.log(data)
+      if(data.insertedId){
+        toast.success(`${medicine.name} has been added to your cart`)
+        refetch()
+      }
+
+    }
+    else{
+      navigate('/login')
     }
 
-    const {data} = await axiosCommon.post('cart',medicineData)
-    console.log(data)
-    if(data.insertedId){
-      toast.success(`${medicine.name} has been added to your cart`)
-      refetch()
-    }
 
-    
   }
 
 
 
 
- 
+
   return (
     <>
       <div className='w-[1200px] mx-auto px-4 sm:px-8'>
@@ -49,7 +59,7 @@ const Shop = () => {
               <table className='min-w-full leading-normal '>
                 <thead className="bg-cyan-400 bg-opacity-20 font-bold">
                   <tr>
-                   
+
                     <th
                       scope='col'
                       className='px-5 py-3   border-b border-gray-200 text-gray-800  text-left text-sm uppercase '
@@ -79,7 +89,7 @@ const Shop = () => {
                 </thead>
                 <tbody>{/* User data table row */}
                   {
-                    medicines?.map(medicine => <ShopRow key={medicine._id} medicine={medicine} handleAddCart={handleAddCart}  />)
+                    medicines?.map(medicine => <ShopRow key={medicine._id} medicine={medicine} handleAddCart={handleAddCart} />)
                   }
                 </tbody>
               </table>

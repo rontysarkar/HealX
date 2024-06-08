@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home/Homee";
 import Register from "../pages/Register/Register";
 import Shop from "../pages/Shop/Shop";
 import CategoryDetails from "../components/Categorydetails/CategoryDetails";
+import Cart from "../pages/Cart/Cart";
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         {
           path:'categoryDetails/:category',
           element:<CategoryDetails/>
+        },
+        {
+          path:'cart',
+          element:<Cart/>
         }
       ]
     },

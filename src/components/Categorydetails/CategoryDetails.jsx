@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useMedicine from "../../Hooks/useMedicine";
 import ShopRow from "../../pages/Shop/ShopRow";
 import useAuth from "../../Hooks/useAuth";
@@ -11,27 +11,36 @@ const CategoryDetails = () => {
     const {category} = useParams()
     const [medicines] = useMedicine()
     const [,refetch] =useCart()
+    const navigate = useNavigate()
 
     const categoryData = medicines.filter(medicine=>medicine.categoryName === category)
 
 
     const handleAddCart = async(medicine) =>{
-        console.log("clicking medicine",medicine)
         
-        const medicineData = {
-          userName:user?.displayName,
-          userEmail:user?.email,
-          medicineName:medicine.name,
-          medicinePrice:medicine.price,
-          medicineId:medicine._id,
+        if(user && user.email){
+          const medicineData = {
+            userName:user?.displayName,
+            userEmail:user?.email,
+            medicineCompany:medicine.company,
+            medicineImage:medicine.image,
+            medicineName:medicine.name,
+            medicinePrice:medicine.price,
+            medicineId:medicine._id,
+          }
+      
+          const {data} = await axiosCommon.post('cart',medicineData)
+          console.log(data)
+          if(data.insertedId){
+            toast.success(`${medicine.name} has been added to your cart`)
+            refetch()
+          }
+
         }
-    
-        const {data} = await axiosCommon.post('cart',medicineData)
-        console.log(data)
-        if(data.insertedId){
-          toast.success(`${medicine.name} has been added to your cart`)
-          refetch()
+        else{
+          navigate('/login')
         }
+        
     
         
       }
