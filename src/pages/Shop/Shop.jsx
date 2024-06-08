@@ -51,7 +51,7 @@ const Shop = () => {
 
   return (
     <>
-      <div className='w-[1200px] mx-auto px-4 sm:px-8'>
+      <div className='lg:w-[1200px] mx-auto px-4 sm:px-8'>
 
         <div className='py-8'>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>

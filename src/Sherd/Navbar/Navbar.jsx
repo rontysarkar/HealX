@@ -80,7 +80,7 @@ const Navbar = () => {
                            
                             <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Update Profile</Link></li>
                             
-                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/myOrderedFood'}>Dashboard</Link></li>
+                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Dashboard</Link></li>
                             <li onClick={()=>LogOut()} className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl" ><a>Logout</a></li>
                         </ul>
                     </div> :  <Link to={'/login'}><button className=" px-4 bg-cyan-400 text-white py-1 rounded-sm">Join Us</button></Link>
