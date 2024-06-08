@@ -5,14 +5,16 @@ import { Toaster } from "react-hot-toast";
 
 const Main = () => {
     const location = useLocation()
- 
+
     const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register');
     return (
         <div>
-            {noHeaderFooter ||  <Navbar/>}
-            <Outlet/>
-            
-            {noHeaderFooter || <Footer/>}
+            {noHeaderFooter || <Navbar />}
+            <div className=' min-h-[calc(100vh-68px)]'>
+                <Outlet />
+            </div>
+
+            {noHeaderFooter || <Footer />}
             <Toaster />
         </div>
     );
