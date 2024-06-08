@@ -8,7 +8,7 @@ import { Fragment, useState } from 'react'
 
 
 
-const ShopRow = ({ medicine, }) => {
+const ShopRow = ({ medicine,handleAddCart }) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -21,7 +21,7 @@ const ShopRow = ({ medicine, }) => {
   return (
     <>
       <tr>
-        <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        {/* <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
           <div className='flex items-center'>
             <div className='flex-shrink-0'>
               <div className='block relative'>
@@ -36,15 +36,15 @@ const ShopRow = ({ medicine, }) => {
               <p className='text-gray-900 whitespace-no-wrap'>{medicine?.title}</p>
             </div>
           </div>
-        </td>
+        </td> */}
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          {medicine.name}
+          {medicine.name} <span className="lowercase text-xs">({medicine.unit})</span>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
           {medicine.categoryName}
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+          <span onClick={()=>handleAddCart(medicine)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
             <span
               aria-hidden='true'
               className='absolute inset-0  opacity-50 rounded-full'
@@ -112,7 +112,7 @@ const ShopRow = ({ medicine, }) => {
                         </div>
 
                         <div className="w-2/3 p-4 md:p-4">
-                          <h1 className="text-2xl  ">{medicine?.name} </h1>
+                          <h1 className="text-2xl  ">{medicine?.name} <span className="lowercase text-lg">{medicine.unit}</span> </h1>
                           <h2 className="text-sm"></h2>
                           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{medicine.description}</p>
                           <p className="mt-2 text-sm  "> Company :<span className="text-xs"> {medicine.company}</span></p>
@@ -122,7 +122,7 @@ const ShopRow = ({ medicine, }) => {
 
                           <div className="flex justify-between mt-3 item-center">
                             <h1 className="text-lg font-bold text-gray-700  md:text-xl">Price : ${medicine.price}</h1>
-                            <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Add to Cart</button>
+                            {/* <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Add to Cart</button> */}
                           </div>
                         </div>
                       </div>
