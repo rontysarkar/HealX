@@ -207,7 +207,7 @@ const Register = () => {
                             {
                                 registerError && <p className="text-red-600 mt-3">{registerError}</p>
                             }
-                            <button type="submit" className="w-full py-2 font-semibold rounded dark:bg-primary dark:text-gray-50 btn">Sign up</button>
+                            <button type="submit" className="w-full py-2 font-semibold rounded bg-cyan-400 dark:text-gray-50  btn">Sign up</button>
                         </form>
                         <div className="flex items-center pt-4 space-x-1">
                             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>

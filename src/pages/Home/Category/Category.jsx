@@ -1,6 +1,10 @@
+import useMedicine from "../../../Hooks/useMedicine";
 import CategoryCard from "./CategoryCard";
 
 const Category = () => {
+    const [medicines] = useMedicine()
+    console.log(medicines)
+
     const categories = [
         {   id:1,
             categoryName: "Tablet",

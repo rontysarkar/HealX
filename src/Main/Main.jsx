@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Sherd/Navbar/Navbar";
 import Footer from "../Sherd/Footer/Footer";
-import { Toaster } from "react-hot-toast";
+
 
 const Main = () => {
     const location = useLocation()
@@ -15,7 +15,7 @@ const Main = () => {
             </div>
 
             {noHeaderFooter || <Footer />}
-            <Toaster />
+           
         </div>
     );
 };

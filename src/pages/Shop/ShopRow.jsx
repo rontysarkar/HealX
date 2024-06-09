@@ -44,7 +44,7 @@ const ShopRow = ({ medicine,handleAddCart }) => {
           {medicine.categoryName}
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <span onClick={()=>handleAddCart(medicine)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+          <span onClick={()=>handleAddCart(medicine)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight hover:text-cyan-500'>
             <span
               aria-hidden='true'
               className='absolute inset-0  opacity-50 rounded-full'
