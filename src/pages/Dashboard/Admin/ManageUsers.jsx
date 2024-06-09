@@ -94,7 +94,7 @@ const ManageUsers = () => {
 
     return (
         <>
-            <h1 className="text-3xl uppercase text-center py-8">Manage All Users</h1>
+            <h1 className="text-3xl uppercase text-center py-8 font-semibold text-cyan-300">Manage All Users</h1>
 
             <div className="lg:w-[1200px] mx-auto overflow-x-auto mt-10">
                 <h1 className="text-2xl font-bold uppercase py-4">All Users :{users?.length}</h1>
