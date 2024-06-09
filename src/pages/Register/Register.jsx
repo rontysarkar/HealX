@@ -7,14 +7,16 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import axios from "axios";
+import { axiosCommon } from "../../Hooks/useAxiosCommon";
+import { GridLoader } from "react-spinners";
 
 const Register = () => {
     const { register, handleSubmit } = useForm()
     const [keyValue, setKeyValue] = useState('')
     const [toggleEye, setToggleEye] = useState(false)
     const [registerError, setRegisterError] = useState('')
-    const { createAccount, signInWithPop, setLoading, userProfileUpdate } = useAuth()
-    const image_hosting_url =  `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imageBB_hosting_key}`;
+    const { createAccount, signInWithPop, setLoading, userProfileUpdate, loading } = useAuth()
+    const image_hosting_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imageBB_hosting_key}`;
     const navigate = useNavigate()
 
     // google and github provider
@@ -25,27 +27,31 @@ const Register = () => {
 
     const onSubmit = async (data) => {
         console.log(data)
+        setLoading(true)
 
         setRegisterError('')
         // console.log(data.password.length)
         if (data.password.length < 6) {
             setRegisterError('Password must be at least 6 characters long')
+            setLoading(false)
             return
         }
 
         if (!/(?=.*[A-Z])/.test(data.password)) {
             setRegisterError('Must have an Uppercase letter in the password')
+            setLoading(false)
             return
         }
         if (!/(?=.*[a-z])/.test(data.password)) {
             setRegisterError('Must have a Lowercase letter in the password')
+            setLoading(false)
             return
         }
 
         const formData = new FormData()
-        formData.append('image',data.image[0])
+        formData.append('image', data.image[0])
 
-        const {data:imageData} = await axios.post(image_hosting_url,formData)
+        const { data: imageData } = await axios.post(image_hosting_url, formData)
         console.log(imageData)
         data.image = imageData.data.display_url
         console.log(data)
@@ -54,14 +60,29 @@ const Register = () => {
 
         createAccount(data.email, data.password)
             .then((result) => {
-                setLoading(false)
                 userProfileUpdate(data.name, data.image)
                     .then(() => {
-                        
+                        const user = {
+                            name: data.name,
+                            email: data.email,
+                            role: data.role
+                        }
+
+
+                        axiosCommon.post('/users', user)
+                            .then(res => {
+                                console.log(res.data)
+                                if (res.data.insertedId) {
+                                    
+                                    toast.success('You have successfully registered.')
+                                    navigate('/')
+                                    console.log(result.user)
+                                    setLoading(false)
+                                }
+                            })
+
                     })
-                toast.success('You have successfully registered.')
-                navigate('/')
-                console.log(result.user)
+
 
             })
             .catch((error) => {
@@ -75,9 +96,23 @@ const Register = () => {
     const handleGoogle = () => {
         signInWithPop(googleProvider)
             .then(result => {
-                navigate('/')
-                setLoading(false)
-                console.log(result)
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'user'
+                }
+                axiosCommon.post('/users', user)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            setLoading(false)
+                            navigate('/')
+                        }
+                    })
+                // navigate('/')
+                // setLoading(false)
+                // console.log(result)
+
             })
             .then(error => {
                 setLoading(false)
@@ -88,9 +123,20 @@ const Register = () => {
     const handleGithub = () => {
         signInWithPop(githubProvider)
             .then(result => {
-                navigate('/')
-                setLoading(false)
-                console.log(result)
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'user'
+                }
+                axiosCommon.post('/users', user)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            setLoading(false)
+                            navigate('/')
+                        }
+                    })
+                
             })
             .catch(error => {
                 setLoading(false)
@@ -105,7 +151,7 @@ const Register = () => {
 
     return (
         <div className="grid items-center min-h-[calc(100vh-200px)]">
-            {/* {loading && <div className="absolute inset-0  h-screen max-w-[1920px] flex justify-center items-center p-5 "><HashLoader className="" size={200} color="#ff681a" /></div>} */}
+            {loading && <div className="absolute inset-0  h-screen max-w-[1920px] flex justify-center items-center p-5 bg-gray-100 bg-opacity-40 "><GridLoader className="" size={50} color="#2acaeb" /></div>}
             <section className="p-6   mt-10  ">
                 <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5 ">
 
@@ -130,17 +176,17 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text pl-1">Photo Url</span>
                                 </label>
-                                <input {...register("image")} type="file" placeholder="Photo Url" className="w-full rounded-md focus:ring focus:dark:ring-violet-600 dark:border-gray-300 h-14 p-4 border " />
+                                <input {...register("image")} type="file" placeholder="Photo Url" className="w-full rounded-md focus:ring focus:dark:ring-violet-600 dark:border-gray-300 h-14 p-4 border " required />
                             </div>
                             <div>
                                 <label className="label">
                                     <span className="label-text pl-1">Select Role</span>
                                 </label>
                                 <select {...register("role")} type="text" placeholder="Select Role" className="w-full rounded-md focus:ring focus:dark:ring-violet-600 dark:border-gray-300 h-14 px-4 border" >
-                                    <option defaultValue={"user"}>Select Role</option>
+                                    <option value={"user"}>Select Role</option>
                                     <option value="user">User</option>
                                     <option value="seller">Seller</option>
-                                    
+
                                 </select>
                             </div>
                             <div>

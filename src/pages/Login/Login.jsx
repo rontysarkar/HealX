@@ -6,6 +6,7 @@ import image from '../../assets/image/login.jpg'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { axiosCommon } from "../../Hooks/useAxiosCommon";
 
 
 const Login = () => {
@@ -27,7 +28,7 @@ const Login = () => {
                 toast.success('You have successfully Sign In')
                 console.log(result)
             })
-            .catch(error=>{
+            .catch(error => {
                 setLoading(false)
                 console.error(error)
                 toast.error(error.message)
@@ -38,8 +39,20 @@ const Login = () => {
     const handleGoogle = () => {
         signInWithPop(googleProvider)
             .then(result => {
-                setLoading(false)
-                Navigate(location.state || "/")
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'user'
+                }
+                axiosCommon.post('/users', user)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            setLoading(false)
+                            Navigate(location.state || "/")
+                        }
+                    })
+
                 console.log(result)
 
                 toast.success('You have successfully Sign In')
@@ -55,10 +68,20 @@ const Login = () => {
     const handleGithub = () => {
         signInWithPop(githubProvider)
             .then(result => {
-                Navigate(location.state || "/")
-                setLoading(false)
-                console.log(result)
-                toast.success('You have successfully registered.')
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'user'
+                }
+                axiosCommon.post('/users', user)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            setLoading(false)
+                            Navigate(location.state || "/")
+                        }
+                    })
+                
             })
             .catch(error => {
                 setLoading(false)
