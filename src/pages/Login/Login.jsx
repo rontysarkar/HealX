@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from '../../assets/image/login.jpg'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
@@ -15,6 +15,7 @@ const Login = () => {
     const { register, handleSubmit, } = useForm()
     const { signInWithPop, logInUser, setLoading } = useAuth()
     const Navigate = useNavigate()
+    const { state } = useLocation()
 
 
     const googleProvider = new GoogleAuthProvider();
@@ -24,14 +25,14 @@ const Login = () => {
         logInUser(data.email, data.password)
             .then(result => {
                 setLoading(false)
-                Navigate(location.state || "/")
+                Navigate(state?.form?.pathname || "/")
                 toast.success('You have successfully Sign In')
                 console.log(result)
             })
             .catch(error => {
                 setLoading(false)
                 console.error(error)
-                toast.error(error.message)
+                toast.error(error?.message)
             })
     }
 
@@ -46,15 +47,14 @@ const Login = () => {
                 }
                 axiosCommon.post('/users', user)
                     .then(res => {
-                        console.log(res.data)
                         if (res.data.insertedId) {
                             setLoading(false)
-                            Navigate(location.state || "/")
+
                         }
                     })
 
                 console.log(result)
-
+                Navigate(state?.form?.pathname || "/")
                 toast.success('You have successfully Sign In')
             })
             .catch(error => {
@@ -78,10 +78,10 @@ const Login = () => {
                         console.log(res.data)
                         if (res.data.insertedId) {
                             setLoading(false)
-                            Navigate(location.state || "/")
+                            Navigate(state.form.pathname || "/")
                         }
                     })
-                
+
             })
             .catch(error => {
                 setLoading(false)
@@ -122,7 +122,7 @@ const Login = () => {
                                     keyValue && <> {toggleEye ? <VscEyeClosed onClick={() => setToggleEye(false)} className="text-2xl absolute top-12 right-5" /> : <VscEye onClick={() => setToggleEye(true)} className="text-2xl absolute top-12 right-5" />}  </>
                                 }
                             </div>
-                            <button type="submit" className="w-full py-2 font-semibold rounded dark:bg-primary dark:text-gray-50 btn">Login</button>
+                            <button type="submit" className="w-full py-2 font-semibold rounded bg-cyan-300 dark:text-gray-50 btn">Login</button>
                         </form>
                         <div className="flex items-center pt-4 space-x-1">
                             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>

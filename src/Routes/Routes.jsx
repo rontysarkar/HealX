@@ -14,6 +14,11 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
 import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
+import PrivateRoutes from "./PrivateRoutes";
+import SellerHomepage from "../pages/Dashboard/Seller/SellerHomepage";
+import Advertise from "../pages/Dashboard/Seller/Advertise";
+import PaymentRecord from "../pages/Dashboard/Seller/PaymentRecord";
+import MedicineManage from "../pages/Dashboard/Seller/MedicineManage";
 
 
 const router = createBrowserRouter([
@@ -53,8 +58,9 @@ const router = createBrowserRouter([
     },
     {
       path:'dashboard',
-      element:<Dashboard/>,
+      element:<PrivateRoutes><Dashboard/></PrivateRoutes>,
       children:[
+        // Admin routes
         {
           path:'adminHome',
           element:<AdminHome/> 
@@ -80,6 +86,26 @@ const router = createBrowserRouter([
         {
           path:'paymentManagement',
           element:<PaymentManagement/>
+        },
+
+        // seller routes
+
+        {
+          path:'sellerHome',
+          element:<SellerHomepage/>
+        },
+        {
+          path:'paymentRecord',
+          element:<PaymentRecord/>
+        },
+        {
+          path:'advertisement',
+          element:<Advertise/>
+        },
+
+        {
+          path:'manageMedicine',
+          element:<MedicineManage/>
         }
       ]
     }

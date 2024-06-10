@@ -53,7 +53,6 @@ const ManageBanner = () => {
         }
 
         const {data} = await axiosSecure.patch('advertise',advertiseInfo)
-        console.log(data)
         if(data.modifiedCount > 0){
             setLoading(false)
             refetch()
