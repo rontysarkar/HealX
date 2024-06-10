@@ -13,7 +13,7 @@ const Dashboard = () => {
             <div className="w-64 min-h-screen bg-cyan-300">
                 <ul className="menu space-y-4 mt-10 font-bold uppercase text-[#111845] ">
                     {
-                        role === 'seller' && <>
+                        role === 'admin' && <>
                             <li >
                                 <NavLink to={"/dashboard/adminHome"}>
                                     <FaHome />Home
@@ -61,6 +61,15 @@ const Dashboard = () => {
                             <li >
                                 <NavLink to={"advertisement"}>
                                     <RiAdvertisementLine /> Advertisement
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+                    {
+                        role === 'user' && <>
+                            <li >
+                                <NavLink to={"/dashboard/userPaymentHistory"}>
+                                    <FaHome />Home
                                 </NavLink>
                             </li>
                         </>

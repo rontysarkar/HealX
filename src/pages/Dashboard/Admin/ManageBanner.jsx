@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import AdvertiseRow from "../../../components/AdvertiseRow";
 import toast from "react-hot-toast";
@@ -6,19 +5,14 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
+import useAdvertise from "../../../Hooks/useAdvertise";
 
 const ManageBanner = () => {
     let [isOpen, setIsOpen] = useState(false)
     const [loading,setLoading] = useState(false)
     const [updateId,setUpdateId] = useState(null)
-    const { data: advertiseData = [], refetch } = useQuery({
-        queryKey: ['advertise'],
-        queryFn: async () => {
-            const { data } = await axiosSecure('advertise')
-            return data
-        }
-
-    })
+    const [advertiseData,refetch] = useAdvertise()
+   
 
     const handleDeleteSlide = async (id) => {
         setLoading(true)

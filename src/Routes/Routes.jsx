@@ -19,6 +19,7 @@ import SellerHomepage from "../pages/Dashboard/Seller/SellerHomepage";
 import Advertise from "../pages/Dashboard/Seller/Advertise";
 import PaymentRecord from "../pages/Dashboard/Seller/PaymentRecord";
 import MedicineManage from "../pages/Dashboard/Seller/MedicineManage";
+import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -106,6 +107,11 @@ const router = createBrowserRouter([
         {
           path:'manageMedicine',
           element:<MedicineManage/>
+        },
+        // user routes
+        {
+          path:'userPaymentHistory',
+          element:<UserPaymentHistory/>
         }
       ]
     }

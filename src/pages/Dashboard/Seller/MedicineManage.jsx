@@ -56,6 +56,13 @@ const MedicineManage = () => {
 
     }
 
+    const handleDelete =async (id) =>{
+        const {data} = await axiosSecure.delete(`medicine/${id}`)
+        if(data.deletedCount > 0){
+            refetch()
+            toast.success('Medicine Delete Successfully')
+        }
+    }
     return (
         <>
             <h1 className="text-3xl uppercase text-center py-6 font-semibold text-cyan-300">Manage Medicine</h1>
@@ -71,7 +78,7 @@ const MedicineManage = () => {
 
                 <ul className="flex flex-col divide-y dark:divide-gray-300 ">
                     {
-                        myMedicine?.map(medicine => <MedicineRow key={medicine._id} medicine={medicine} />)
+                        myMedicine?.map(medicine => <MedicineRow key={medicine._id} medicine={medicine} handleDelete={handleDelete} />)
                     }
                 </ul>
 
