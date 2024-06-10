@@ -4,26 +4,28 @@ import AdvertiseRow from "../../../components/AdvertiseRow";
 import toast from "react-hot-toast";
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import axios from "axios";
+import { FadeLoader } from "react-spinners";
 
 const ManageBanner = () => {
     let [isOpen, setIsOpen] = useState(false)
+    const [loading,setLoading] = useState(false)
     const [updateId,setUpdateId] = useState(null)
     const { data: advertiseData = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
             const { data } = await axiosSecure('advertise')
-            console.log(data)
             return data
         }
 
     })
-    console.log(advertiseData)
 
     const handleDeleteSlide = async (id) => {
-
+        setLoading(true)
         const { data } = await axiosSecure.delete(`advertise/${id}`)
         console.log(data)
         if (data.deletedCount > 0) {
+            setLoading(false)
             refetch()
             toast.success('Advertise Deleted Successfully')
         }
@@ -39,11 +41,25 @@ const ManageBanner = () => {
         
     }
 
-    const handleSubmit = e =>{
+    const handleSubmit =async e =>{
+        setLoading(true)
         e.preventDefault()
         const formData = new FormData()
         formData.append('image',e.target.image.files[0])
-        
+        const {data :imageBB} = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imageBB_hosting_key}`,formData)
+        const advertiseInfo = {
+            image:imageBB.data.display_url,
+            id: updateId
+        }
+
+        const {data} = await axiosSecure.patch('advertise',advertiseInfo)
+        console.log(data)
+        if(data.modifiedCount > 0){
+            setLoading(false)
+            refetch()
+            closeModal()
+            toast.success('Image added Successfully')
+        }
     }
 
 
@@ -61,9 +77,7 @@ const ManageBanner = () => {
                 </div>
 
                 <ul className="flex flex-col divide-y dark:divide-gray-300 ">
-                    {/* {
-                   category?.map(cat=><CategoryRow key={cat._id} cat={cat} handleDeleteCategory={handleDeleteCategory}/>) 
-                } */}
+                    
                     {
                         advertiseData?.map(advertise => <AdvertiseRow key={advertise._id} openModal={openModal} handleDeleteSlide={handleDeleteSlide} advertise={advertise} />)
                     }
@@ -105,7 +119,7 @@ const ManageBanner = () => {
                                         Add Category
                                     </Dialog.Title>
                                     <div className='relative'>
-                                        {/* {loading && <div className='absolute top-[30%] right-[40%]'><FadeLoader color="#36d7b7" /></div>} */}
+                                        {loading && <div className='absolute top-[30%] right-[40%]'><FadeLoader color="#36d7b7" /></div>}
                                         <form onSubmit={handleSubmit} className=' space-y-4 '>
                                             
                                             <div>

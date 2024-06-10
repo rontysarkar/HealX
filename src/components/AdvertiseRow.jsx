@@ -15,7 +15,7 @@ const AdvertiseRow = ({ advertise, handleDeleteSlide,openModal }) => {
                         <div className="text-right space-y-4 my-auto">
                             {/* <p className="text-lg font-semibold">{medicinePrice}$</p> */}
                             <div className="dropdown dropdown-left">
-                                <div tabIndex={0} role="button" className="btn m-1">Click</div>
+                                <div tabIndex={0} role="button" className="mt-2 px-4 mx-4 bg-cyan-300 text-white hover:bg-cyan-800 py-1 rounded-sm">Action</div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                     <li onClick={()=>openModal(advertise._id)} className="hover:bg-cyan-300 hover:text-white "><a>Add Slide</a></li>
                                     <li onClick={() => handleDeleteSlide(advertise._id)} className="hover:bg-red-600 hover:text-white "><a>Remove Slide</a></li>
