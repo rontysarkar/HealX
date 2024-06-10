@@ -64,9 +64,7 @@ const ManageCategory = () => {
 
 
                 <div className="space-y-2  text-right">
-                    <p className="uppercase font-bold text-xl ">Total amount :
-                        <span className="font-semibold">  $ </span>
-                    </p>
+                    <p className="uppercase font-bold text-xl ">Total Category : {category?.length}</p>
                     {/* <button  className=" mt-2 px-4 mx-4 bg-red-400 text-white py-1 rounded-sm">Clear</button> */}
                     <button onClick={openModal} className=" mt-2 px-4 bg-cyan-400 hover:bg-cyan-800 text-white py-1 rounded-sm">Add Category</button>
 

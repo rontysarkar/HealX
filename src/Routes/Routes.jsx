@@ -13,6 +13,7 @@ import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
+import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
 
 
 const router = createBrowserRouter([
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
         },
         {
           path:"manageBanner",
-          element:<ManageCategory/>
+          element:<ManageBanner/>
         },
         {
           path:'manageUser',

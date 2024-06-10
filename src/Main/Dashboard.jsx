@@ -1,4 +1,6 @@
-import { FaHome } from "react-icons/fa";
+import { BiSolidReport } from "react-icons/bi";
+import { FaHome,  FaRegImage,  FaUsers } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -13,22 +15,22 @@ const Dashboard = () => {
                     </li>
                     <li >
                         <NavLink to={"manageUser"}>
-                            <FaHome />Manage User
+                            <FaUsers />Manage User
                         </NavLink>
                     </li>
                     <li >
                         <NavLink to={"manageCategory"}>
-                            <FaHome />Manage Category
+                        <MdCategory />Manage Category
                         </NavLink>
                     </li>
                     <li >
                         <NavLink to={"salesReport"}>
-                            <FaHome />Sales Report
+                            <BiSolidReport />Sales Report
                         </NavLink>
                     </li>
                     <li >
                         <NavLink to={"manageBanner"}>
-                            <FaHome />Manage Banner
+                        <FaRegImage />Manage Banner
                         </NavLink>
                     </li>
                     {/* common link  */}

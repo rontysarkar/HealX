@@ -22,6 +22,12 @@ const Banner = () => {
       id:2,
       text:'Dedicated first aid kit for Families',
       image:'https://i.ibb.co/BcPt5Tf/1-2-Op-2u-g-TL1bq-So-Oh03-AVw.jpg'
+    },
+    {  
+      medicineName:"table",
+      description:'Dedicated first aid kit for Families',
+      medicineImage:'https://i.ibb.co/BcPt5Tf/1-2-Op-2u-g-TL1bq-So-Oh03-AVw.jpg',
+      sellerEmail :"ronty@gmail.com"
     }
   ]
 

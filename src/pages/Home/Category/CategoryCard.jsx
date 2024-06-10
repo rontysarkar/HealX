@@ -8,7 +8,7 @@ const CategoryCard = ({category}) => {
                 <img src={category.categoryImage} alt="Shoes" className="rounded-xl w-40 " />
             </figure>
             <div className="card-body items-center text-center">
-                <h2 className="card-title">{category.categoryName} ({category.medicineCount})</h2>
+                <h2 className="card-title">{category.categoryName}</h2>
                 
             </div>
         </div></Link>
