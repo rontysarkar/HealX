@@ -3,8 +3,13 @@ import axios from 'axios';
 import { Fragment, useState } from 'react'
 import { axiosSecure } from '../../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { FadeLoader } from 'react-spinners';
+import useCategory from '../../../Hooks/useCategory';
+import CategoryRow from '../../../components/CategoryRow';
 const ManageCategory = () => {
-    let [isOpen, setIsOpen] = useState(true)
+    const [loading,setLoading] = useState(false)
+    let [isOpen, setIsOpen] = useState(false)
+    const [category,refetch] = useCategory()
 
     function closeModal() {
         setIsOpen(false)
@@ -15,6 +20,7 @@ const ManageCategory = () => {
     }
 
     const handleSubmit =async e =>{
+        setLoading(true)
         e.preventDefault()
         const form = e.target
         const formData = new FormData()
@@ -31,11 +37,23 @@ const ManageCategory = () => {
         const {data} = await axiosSecure.post('category',categoryInfo)
         console.log(data)
         if(data.insertedId){
+            refetch()
+            setLoading(false)
             closeModal()
             toast.success(`${form.name.value} Category Added Successfully`)
         }
     }
 
+    const handleDeleteCategory = async(id) =>{
+        console.log(id)
+        const {data} = await axiosSecure.delete(`category/${id}`)
+        console.log(data)
+        if(data.deletedCount > 0){
+            refetch()
+            toast.success('Category deleted Successfully')
+        }
+
+    }
     
     return (
         <>
@@ -54,12 +72,15 @@ const ManageCategory = () => {
 
                 </div>
 
-
-                <ul className="flex flex-col divide-y dark:divide-gray-300">
-                    {/* {cartData?.map(medicine => <CartRow key={medicine._id} medicine={medicine} setPrice={setPrice} handleDelete={handleDelete} />)} */}
-                </ul>
+                <ul className="flex flex-col divide-y dark:divide-gray-300 ">
+                {
+                   category?.map(cat=><CategoryRow key={cat._id} cat={cat} handleDeleteCategory={handleDeleteCategory}/>) 
+                }
+            </ul>
+                
 
             </div>
+            
 
             {/* modal  */}
 
@@ -95,7 +116,8 @@ const ManageCategory = () => {
                                     >
                                         Add Category
                                     </Dialog.Title>
-                                    <div className=''>
+                                    <div className='relative'>
+                                        {loading && <div className='absolute top-[30%] right-[40%]'><FadeLoader  color="#36d7b7" /></div>}
                                         <form onSubmit={handleSubmit} className=' space-y-4 '>
                                             <div className="space-y-2 ">
                                                 <label  className="text-sm">Category Name :</label>
@@ -103,9 +125,10 @@ const ManageCategory = () => {
                                             </div>
                                             <div>
                                                 <label  className="block text-sm  ">Category Image:</label>
-                                                <input name='image' type="file" className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full  " />
+                                                <input required name='image' type="file" className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full  " />
                                             </div>
-                                            <button type="submit" className="w-full py-2 font-semibold rounded bg-cyan-400 dark:text-gray-50  btn">Add</button>
+                                            
+                                            <button type="submit" className="w-full py-2 font-semibold rounded bg-cyan-400 dark:text-gray-50  btn">Add </button>
                                         </form>
                                     </div>
 

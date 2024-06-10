@@ -31,6 +31,14 @@ const Dashboard = () => {
                             <FaHome />Manage Banner
                         </NavLink>
                     </li>
+                    {/* common link  */}
+                    <div className="divider"></div>
+                    <li>
+                        <NavLink to="/">
+                            <FaHome></FaHome>
+                            Home</NavLink>
+                    </li>
+                    
                 </ul>
             </div>
             <div className="flex-1">
