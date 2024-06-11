@@ -16,6 +16,7 @@ const Cart = () => {
     const navigate = useNavigate()
 
 
+
     useEffect(() => {
         const totalPrice = cartData.reduce((accumulator, currentValue) => accumulator + currentValue.medicinePrice, 0)
         setPrice(totalPrice)
@@ -74,7 +75,7 @@ const Cart = () => {
                     <span className="font-semibold"> {price} $ </span>
                 </p>
                 <button onClick={handleDeleteAll} className=" mt-2 px-4 mx-4 bg-red-400 text-white py-1 rounded-sm">Clear</button>
-                <Link to={'/checkout'}><button  disabled={!cartData.length} className=" hover:shadow-lg mt-2 px-4 bg-cyan-400 text-white py-1 rounded-sm">Checkout</button></Link>
+                <Link state={price} to={'/checkout'}><button  disabled={!cartData.length} className=" hover:shadow-lg mt-2 px-4 bg-cyan-400 text-white py-1 rounded-sm">Checkout</button></Link>
 
             </div>
 
