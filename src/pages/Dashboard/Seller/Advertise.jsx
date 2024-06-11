@@ -9,10 +9,10 @@ import toast from "react-hot-toast";
 import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 
 const Advertise = () => {
-    const {user} = useAuth()
+    const { user } = useAuth()
     const [advertiseData, refetch] = useAdvertise()
     let [isOpen, setIsOpen] = useState(false)
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const axiosPrivate = useAxiosPrivate()
 
     const myAdvertise = advertiseData.filter(add => add.sellerEmail === user?.email)
@@ -36,16 +36,27 @@ const Advertise = () => {
         console.log(imageBB)
         const advertiseData = {
             medicineName: form.name.value,
-            description :form.description.value,
-            medicineImage : imageBB.data.display_url,
-            sellerEmail : user?.email
+            description: form.description.value,
+            medicineImage: imageBB.data.display_url,
+            sellerEmail: user?.email
         }
-        const {data} = await axiosPrivate.post('advertise',advertiseData)
-        if(data.insertedId){
+        const { data } = await axiosPrivate.post('advertise', advertiseData)
+        if (data.insertedId) {
             refetch()
             closeModal()
             setLoading(false)
             toast.success('Advertise Added Successfully')
+        }
+    }
+
+    const handleDeleteAdvertise = async (id) => {
+        setLoading(true)
+        const { data } = await axiosPrivate.delete(`advertise/${id}`)
+        console.log(data)
+        if (data.deletedCount > 0) {
+            setLoading(false)
+            refetch()
+            toast.success('Advertise Deleted Successfully')
         }
     }
     return (
@@ -63,7 +74,7 @@ const Advertise = () => {
                 <ul className="flex flex-col divide-y dark:divide-gray-300 ">
 
                     {
-                        myAdvertise?.map(advertise => <SellerAdvertiseRow key={advertise._id} advertise={advertise} />)
+                        myAdvertise?.map(advertise => <SellerAdvertiseRow key={advertise._id} advertise={advertise} handleDeleteAdvertise ={handleDeleteAdvertise } />)
                     }
                 </ul>
 

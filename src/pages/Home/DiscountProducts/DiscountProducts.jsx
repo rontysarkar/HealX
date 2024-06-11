@@ -71,7 +71,7 @@ const DiscountProducts = () => {
             >
                 {
                     discountProducts.map(product => <SwiperSlide key={product._id} >
-                        <div className="max-w-xs    ">
+                        <div className="max-w-xs  hover:shadow-2xl  ">
                             <div className=' w-h-60 h-60  mx-auto'>
                                 <img src={product.image} alt="" className="object-cover object-center h-full w-full mx-auto    dark:bg-gray-500" />
                                 

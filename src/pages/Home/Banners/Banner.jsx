@@ -9,27 +9,12 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 
 import Slider from './Slider';
+import useAdvertise from '../../../Hooks/useAdvertise';
 
 const Banner = () => {
+  const [advertiseData] = useAdvertise()
 
-  const banners = [
-    {
-      id:1,
-      text:'Dedicated first aid kit for Families',
-      image:'https://i.ibb.co/xgtHGRZ/img1.webp'
-    },
-    {  
-      id:2,
-      text:'Dedicated first aid kit for Families',
-      image:'https://i.ibb.co/BcPt5Tf/1-2-Op-2u-g-TL1bq-So-Oh03-AVw.jpg'
-    },
-    {  
-      medicineName:"table",
-      description:'Dedicated first aid kit for Families',
-      medicineImage:'https://i.ibb.co/BcPt5Tf/1-2-Op-2u-g-TL1bq-So-Oh03-AVw.jpg',
-      sellerEmail :"ronty@gmail.com"
-    }
-  ]
+ 
 
 
   return (
@@ -49,7 +34,7 @@ const Banner = () => {
         className="mySwiper"
       >
         {
-          banners.map(banner => <SwiperSlide key={banner.id}><Slider  banner={banner}  /> </SwiperSlide>  )
+          advertiseData?.map(banner => <SwiperSlide key={banner._id}><Slider  banner={banner}  /> </SwiperSlide>  )
         }
 
        

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const CategoryCard = ({category}) => {
     return (
         <Link to={`categoryDetails/${category.categoryName}`}>
-        <div className="card w-80 h-80 p-10 bg-base-100 shadow-xl">
+        <div className="card w-80 h-80 p-10 bg-base-100 shadow-md hover:shadow-2xl">
             <figure className="px-10  ">
                 <img src={category.categoryImage} alt="Shoes" className="rounded-xl w-40 " />
             </figure>
