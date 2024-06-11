@@ -1,4 +1,3 @@
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import AdvertiseRow from "../../../components/AdvertiseRow";
 import toast from "react-hot-toast";
 import { Fragment, useState } from 'react'
@@ -6,17 +5,19 @@ import { Dialog, Transition } from '@headlessui/react'
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
 import useAdvertise from "../../../Hooks/useAdvertise";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 
 const ManageBanner = () => {
     let [isOpen, setIsOpen] = useState(false)
     const [loading,setLoading] = useState(false)
     const [updateId,setUpdateId] = useState(null)
     const [advertiseData,refetch] = useAdvertise()
+    const axiosPrivate = useAxiosPrivate()
    
 
     const handleDeleteSlide = async (id) => {
         setLoading(true)
-        const { data } = await axiosSecure.delete(`advertise/${id}`)
+        const { data } = await axiosPrivate.delete(`advertise/${id}`)
         console.log(data)
         if (data.deletedCount > 0) {
             setLoading(false)
@@ -46,7 +47,7 @@ const ManageBanner = () => {
             id: updateId
         }
 
-        const {data} = await axiosSecure.patch('advertise',advertiseInfo)
+        const {data} = await axiosPrivate.patch('advertise',advertiseInfo)
         if(data.modifiedCount > 0){
             setLoading(false)
             refetch()

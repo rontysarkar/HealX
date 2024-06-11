@@ -5,9 +5,9 @@ import MedicineRow from "../../../components/MedicineRow";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import axios from "axios";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { FadeLoader } from "react-spinners";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 
 const MedicineManage = () => {
     const [medicines,refetch] = useMedicine()
@@ -15,6 +15,7 @@ const MedicineManage = () => {
     const { register, handleSubmit } = useForm()
     let [isOpen, setIsOpen] = useState(false)
     const [loading,setLoading] = useState(false)
+    const axiosPrivate = useAxiosPrivate()
 
 
 
@@ -44,7 +45,7 @@ const MedicineManage = () => {
         data.discount = parseFloat(data.discount)
         data.sellerEmail = user?.email
 
-        const {data:addMedicine} = await axiosSecure.post('medicines',data)
+        const {data:addMedicine} = await axiosPrivate.post('medicines',data)
         console.log(addMedicine)
         if(addMedicine.insertedId){
             closeModal()
@@ -57,7 +58,7 @@ const MedicineManage = () => {
     }
 
     const handleDelete =async (id) =>{
-        const {data} = await axiosSecure.delete(`medicine/${id}`)
+        const {data} = await axiosPrivate.delete(`medicine/${id}`)
         if(data.deletedCount > 0){
             refetch()
             toast.success('Medicine Delete Successfully')

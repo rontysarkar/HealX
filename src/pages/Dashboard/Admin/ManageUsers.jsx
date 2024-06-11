@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import { FaTrashAlt, FaUsers, FaUserCheck } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { Fragment, useState } from "react";
@@ -7,19 +6,25 @@ import { Dialog, Transition } from '@headlessui/react'
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 // import RoleModal from "../../../components/Modal/RoleModal";
 
 const ManageUsers = () => {
     const { user: presentUser } = useAuth()
     let [isOpen, setIsOpen] = useState(false)
     const [userEmail, setUserEmail] = useState('')
+    const axiosPrivate = useAxiosPrivate()
 
 
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const { data } = await axiosSecure('users')
+            const { data } = await axiosPrivate('users',{
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                }
+            })
             return data
 
         }
@@ -40,7 +45,7 @@ const ManageUsers = () => {
             confirmButtonText: "Yes, delete User"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axiosSecure.delete(`users/${id}`)
+                const { data } = await axiosPrivate.delete(`users/${id}`)
                 console.log(data)
                 if (data.deletedCount > 0) {
                     refetch()
@@ -82,7 +87,7 @@ const ManageUsers = () => {
             role
         }
 
-        const { data } = await axiosSecure.patch('users', user)
+        const { data } = await axiosPrivate.patch('users', user)
         if (data.modifiedCount > 0) {
             refetch()
             toast.success(` ${role}  Role Set Successfully `)

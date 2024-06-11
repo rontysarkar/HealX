@@ -5,14 +5,15 @@ import { Dialog, Transition } from '@headlessui/react'
 import axios from "axios";
 import useAuth from "../../../Hooks/useAuth";
 import { FadeLoader } from "react-spinners";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 
 const Advertise = () => {
     const {user} = useAuth()
     const [advertiseData, refetch] = useAdvertise()
     let [isOpen, setIsOpen] = useState(false)
     const [loading,setLoading] = useState(false)
+    const axiosPrivate = useAxiosPrivate()
 
     const myAdvertise = advertiseData.filter(add => add.sellerEmail === user?.email)
 
@@ -39,7 +40,7 @@ const Advertise = () => {
             medicineImage : imageBB.data.display_url,
             sellerEmail : user?.email
         }
-        const {data} = await axiosSecure.post('advertise',advertiseData)
+        const {data} = await axiosPrivate.post('advertise',advertiseData)
         if(data.insertedId){
             refetch()
             closeModal()

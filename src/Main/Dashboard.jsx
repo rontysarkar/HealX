@@ -1,6 +1,6 @@
 import { BiSolidReport } from "react-icons/bi";
 import { FaHome, FaRegImage, FaUsers } from "react-icons/fa";
-import { MdCategory, MdOutlinePayments } from "react-icons/md";
+import { MdCategory, MdHomeMax, MdOutlinePayments } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useRole from "../Hooks/useRole";
 import { GiMedicines } from "react-icons/gi";
@@ -69,7 +69,7 @@ const Dashboard = () => {
                         role === 'user' && <>
                             <li >
                                 <NavLink to={"/dashboard/userPaymentHistory"}>
-                                    <FaHome />Home
+                                    <FaHome />Your Home
                                 </NavLink>
                             </li>
                         </>
@@ -78,7 +78,8 @@ const Dashboard = () => {
                     <div className="divider"></div>
                     <li>
                         <NavLink to="/">
-                            <FaHome></FaHome>
+                        <MdHomeMax />
+
                             Home</NavLink>
                     </li>
 

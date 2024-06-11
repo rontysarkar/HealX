@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosSecure } from "./useAxiosSecure";
+import useAxiosPrivate from "./useAxiosPrivate";
 
 const useAdvertise = () => {
+    const axiosPrivate = useAxiosPrivate()
     const { data: advertiseData = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const { data } = await axiosSecure('advertise')
+            const { data } = await axiosPrivate('advertise')
             return data
         }
 

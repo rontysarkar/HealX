@@ -1,14 +1,15 @@
 
 import { useEffect, useState } from "react";
-import { axiosSecure } from "../../Hooks/useAxiosSecure";
 import useCart from "../../Hooks/useCart";
 import CartRow from "./CartRow";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const Cart = () => {
+    const axiosPrivate = useAxiosPrivate()
     const { user } = useAuth()
     const [cartData, refetch] = useCart()
     const [price, setPrice] = useState()
@@ -22,7 +23,7 @@ const Cart = () => {
 
 
     const handleDelete = async (id) => {
-        const { data } = await axiosSecure.delete(`cart/${id}`)
+        const { data } = await axiosPrivate.delete(`cart/${id}`)
         console.log(data)
         if (data.deletedCount > 0) {
             refetch()
@@ -43,7 +44,7 @@ const Cart = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axiosSecure.delete(`cart?email=${user?.email}`)
+                const { data } = await axiosPrivate.delete(`cart?email=${user?.email}`)
                 console.log(data)
                 if(data.deletedCount > 0){
                     refetch()

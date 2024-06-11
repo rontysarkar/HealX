@@ -1,15 +1,16 @@
 import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
 import { Fragment, useState } from 'react'
-import { axiosSecure } from '../../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { FadeLoader } from 'react-spinners';
 import useCategory from '../../../Hooks/useCategory';
 import CategoryRow from '../../../components/CategoryRow';
+import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
 const ManageCategory = () => {
     const [loading,setLoading] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
     const [category,refetch] = useCategory()
+    const axiosPrivate = useAxiosPrivate()
 
     function closeModal() {
         setIsOpen(false)
@@ -34,7 +35,7 @@ const ManageCategory = () => {
             categoryImage:imageBB.data.display_url,
         }
         console.log(categoryInfo)
-        const {data} = await axiosSecure.post('category',categoryInfo)
+        const {data} = await axiosPrivate.post('category',categoryInfo)
         console.log(data)
         if(data.insertedId){
             refetch()
@@ -46,7 +47,7 @@ const ManageCategory = () => {
 
     const handleDeleteCategory = async(id) =>{
         console.log(id)
-        const {data} = await axiosSecure.delete(`category/${id}`)
+        const {data} = await axiosPrivate.delete(`category/${id}`)
         console.log(data)
         if(data.deletedCount > 0){
             refetch()
