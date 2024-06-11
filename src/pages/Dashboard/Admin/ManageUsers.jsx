@@ -20,11 +20,7 @@ const ManageUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const { data } = await axiosPrivate('users',{
-                headers:{
-                    authorization: `Bearer ${localStorage.getItem('access-token')}`
-                }
-            })
+            const { data } = await axiosPrivate('users')
             return data
 
         }
@@ -80,7 +76,6 @@ const ManageUsers = () => {
 
     const handleSetRole = async (email, role) => {
         closeModal()
-
 
         const user = {
             email,
@@ -147,7 +142,7 @@ const ManageUsers = () => {
             </div>
             {/* <RoleModal handleSetRole={handleSetRole} closeModal={closeModal} isOpen={isOpen} /> */}
 
-            modal
+
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     <Transition.Child
