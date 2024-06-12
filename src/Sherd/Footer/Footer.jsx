@@ -1,20 +1,18 @@
 
 const Footer = () => {
     return (
-        <footer className=" p-10 bg-base-200 text-base-content">
-            <div className="footer container mx-auto px-20 ">
+        <footer className=" lg:p-10 bg-base-200 text-base-content">
+            <div className="footer container mx-auto lg:px-20 px-4 ">
                 <nav>
-                    <h6 className="footer-title">Services</h6>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <h6 className="footer-title">HealX</h6>
+                    <p>Pharmacy License Number: XYZ-1234567</p>
+                    <p>SSL Certificate: Your transactions are secure <br /> with SSL encryption</p>
+                    <p>Opentime : Monday – Friday: 9:00-20:00</p>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Company</h6>
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
                     <a className="link link-hover">Press kit</a>
                 </nav>
                 <nav>

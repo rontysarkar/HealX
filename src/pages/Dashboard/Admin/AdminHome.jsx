@@ -5,6 +5,7 @@ import { MdOutlinePayments } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 import usePayments from "../../../Hooks/usePayments";
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
     const { user } = useAuth()
@@ -25,6 +26,7 @@ const AdminHome = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet><title>HealX || Admin Page </title></Helmet>
             <h1 className="text-3xl p-20 font-bold ">
                 <span> Hi , Welcome </span>
                 {

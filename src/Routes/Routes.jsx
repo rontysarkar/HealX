@@ -67,9 +67,9 @@ const router = createBrowserRouter([
       element:<PrivateRoutes><Dashboard/></PrivateRoutes>,
       children:[
         // Admin routes
-        {
-          path:'/dashboard',
-          element:<AdminHome/> 
+        { path:'adminHome',
+          index:true,
+          element:<PrivateRoutes><AdminHome/> </PrivateRoutes>
         },
         {
           path:'manageCategory',
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
 
         {
           path:'sellerHome',
-          element:<SellerHomepage/>
+          element:<PrivateRoutes><SellerHomepage/></PrivateRoutes>
         },
         {
           path:'paymentRecord',
@@ -116,7 +116,7 @@ const router = createBrowserRouter([
         // user routes
         {
           path:'userPaymentHistory',
-          element:<UserPaymentHistory/>
+          element:<PrivateRoutes><UserPaymentHistory/></PrivateRoutes>
         }
       ]
     }

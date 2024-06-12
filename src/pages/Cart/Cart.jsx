@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
     const axiosPrivate = useAxiosPrivate()
@@ -66,6 +67,7 @@ const Cart = () => {
     }
     return (
         <div className="flex flex-col max-w-6xl p-6 space-y-4 sm:p-10  dark:text-gray-800 mx-auto">
+            <Helmet><title>HealX || Cart </title></Helmet>
             {/* <h2 className="text-xl font-semibold">Your cart</h2> */}
 
 

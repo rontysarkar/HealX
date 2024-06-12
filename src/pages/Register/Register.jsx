@@ -9,6 +9,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import axios from "axios";
 import { axiosCommon } from "../../Hooks/useAxiosCommon";
 import { GridLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { register, handleSubmit } = useForm()
@@ -151,6 +152,7 @@ const Register = () => {
 
     return (
         <div className="grid items-center min-h-[calc(100vh-200px)]">
+            <Helmet><title>HealX || SignUp </title></Helmet>
             {loading && <div className="absolute inset-0  h-screen max-w-[1920px] flex justify-center items-center p-5 bg-gray-100 bg-opacity-40 "><GridLoader className="" size={50} color="#2acaeb" /></div>}
             <section className="p-6   mt-10  ">
                 <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5 ">

@@ -5,6 +5,7 @@ import { axiosCommon } from "../../Hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import useCart from "../../Hooks/useCart";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -51,6 +52,7 @@ const Shop = () => {
 
   return (
     <>
+    <Helmet><title>HealX || Shop </title></Helmet>
       <div className='lg:w-[1200px] mx-auto px-4 sm:px-8'>
 
         <div className='py-8'>

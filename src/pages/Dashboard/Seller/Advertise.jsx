@@ -7,6 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { FadeLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
+import { Helmet } from "react-helmet-async";
 
 const Advertise = () => {
     const { user } = useAuth()
@@ -61,6 +62,7 @@ const Advertise = () => {
     }
     return (
         <>
+        <Helmet><title>HealX || Advertise </title></Helmet>
             <h1 className="text-3xl uppercase text-center py-8 font-semibold text-cyan-300">Manage Advertise</h1>
             <div className="flex flex-col max-w-6xl p-6 space-y-4 sm:p-10  dark:text-gray-800 mx-auto">
                 {/* <h2 className="text-xl font-semibold">Your cart</h2> */}

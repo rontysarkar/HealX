@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FadeLoader } from "react-spinners";
 import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
+import { Helmet } from "react-helmet-async";
 
 const MedicineManage = () => {
     const [medicines,refetch] = useMedicine()
@@ -66,6 +67,7 @@ const MedicineManage = () => {
     }
     return (
         <>
+        <Helmet><title>HealX || Medicine </title></Helmet>
             <h1 className="text-3xl uppercase text-center py-6 font-semibold text-cyan-300">Manage Medicine</h1>
             <div className="flex flex-col max-w-6xl p-6 space-y-4 sm:p-10  dark:text-gray-800 mx-auto">
 

@@ -6,6 +6,7 @@ import { FadeLoader } from 'react-spinners';
 import useCategory from '../../../Hooks/useCategory';
 import CategoryRow from '../../../components/CategoryRow';
 import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
+import { Helmet } from 'react-helmet-async';
 const ManageCategory = () => {
     const [loading,setLoading] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
@@ -58,6 +59,7 @@ const ManageCategory = () => {
     
     return (
         <>
+        <Helmet><title>HealX || Category </title></Helmet>
             <h1 className="text-3xl uppercase text-center py-8 font-semibold text-cyan-300">Manage Category</h1>
             <div className="flex flex-col max-w-6xl p-6 space-y-4 sm:p-10  dark:text-gray-800 mx-auto">
                 {/* <h2 className="text-xl font-semibold">Your cart</h2> */}

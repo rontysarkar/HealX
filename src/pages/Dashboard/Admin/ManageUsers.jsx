@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
+import { Helmet } from "react-helmet-async";
 // import RoleModal from "../../../components/Modal/RoleModal";
 
 const ManageUsers = () => {
@@ -94,6 +95,7 @@ const ManageUsers = () => {
 
     return (
         <>
+        <Helmet><title>HealX || Users</title></Helmet>
             <h1 className="text-3xl uppercase text-center py-8 font-semibold text-cyan-300">Manage All Users</h1>
 
             <div className="lg:w-[1200px] mx-auto overflow-x-auto mt-10">

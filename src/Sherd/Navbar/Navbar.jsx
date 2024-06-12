@@ -1,10 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
+import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
     const {user,LogOut,loading} = useAuth()
     const [cartData] = useCart()
+    const [role] = useRole()
     
     const navLinks = <>
         <NavLink
@@ -54,15 +56,16 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
 
                             {navLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">HealX</a>
+                    <img className="w-10 mx-2" src="logo.png" alt="" />
+                    <a className=" text-xl font-bold">HealX</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 font-bold flex items-center ">
+                    <ul className="menu menu-horizontal z-30 px-1 font-bold flex items-center ">
                         {navLinks}
 
                     </ul>
@@ -80,7 +83,7 @@ const Navbar = () => {
                            
                             <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Update Profile</Link></li>
                             
-                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={'/dashboard'}>Dashboard</Link></li>
+                            <li className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl"><Link to={`/dashboard/${ role === 'admin' ? 'adminHome' : role === 'seller' ? 'sellerHome' : 'userPaymentHistory'}`}>Dashboard</Link></li>
                             <li onClick={()=>LogOut()} className="font-bold hover:bg-cyan-400 hover:text-white hover:rounded-3xl" ><a>Logout</a></li>
                         </ul>
                     </div> :  loading ? " " : <Link to={'/login'}><button className=" px-4 bg-cyan-400 text-white py-1 rounded-sm">Join Us</button></Link>

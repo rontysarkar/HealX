@@ -7,6 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { axiosCommon } from "../../Hooks/useAxiosCommon";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -92,6 +93,7 @@ const Login = () => {
 
     return (
         <div className="grid items-center min-h-[calc(100vh-200px)]">
+            <Helmet><title>HealX || Login </title></Helmet>
             {/* {loading && <div className="absolute inset-0  h-screen max-w-[1920px] flex justify-center items-center p-5 "><HashLoader className="" size={200} color="#ff681a" /></div>} */}
 
             <section className="p-6  mt-10  ">

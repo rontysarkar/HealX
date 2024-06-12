@@ -2,6 +2,7 @@ import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
 import usePayments from "../../../Hooks/usePayments";
+import { Helmet } from "react-helmet-async";
 
 const PaymentManagement = () => {
     const axiosPrivate = useAxiosPrivate()
@@ -17,6 +18,7 @@ const PaymentManagement = () => {
     }
     return (
         <>
+        <Helmet><title>HealX || Payment </title></Helmet>
         <h1 className="text-3xl uppercase text-center py-8 font-semibold text-cyan-300">Payments Management</h1>
 
         <div className="lg:w-[1200px] mx-auto overflow-x-auto mt-10">
