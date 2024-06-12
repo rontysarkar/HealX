@@ -25,6 +25,11 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li >
+                                <NavLink to={"paymentManagement"}>
+                                    <FaUsers />Payments Management
+                                </NavLink>
+                            </li>
+                            <li >
                                 <NavLink to={"manageCategory"}>
                                     <MdCategory />Manage Category
                                 </NavLink>

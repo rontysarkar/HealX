@@ -7,7 +7,7 @@ const UserPaymentHistory = () => {
     const axiosPrivate = useAxiosPrivate()
 
     const { data: paymentsData = [] } = useQuery({
-        queryKey: ["payments"],
+        queryKey: ["payments",user?.email],
         queryFn: async () => {
             const res = await axiosPrivate(`payments/${user?.email}`)
             return res.data
@@ -38,7 +38,7 @@ const UserPaymentHistory = () => {
                                 <td>{payment.email}</td>
                                 <td>{payment.price}</td>
 
-                                <th>{payment.transactionId}</th>
+                                <th className="text-xs">{payment.transactionId}</th>
 
                                 <th>
                                     {payment.status}
