@@ -6,7 +6,7 @@ Visit our website: [HealX ](https://healx-22031.web.app)
 | Role | Email  |Password  |
 | :-------- | :------- | :------------- |
 | Admin | admin@gmail.com | Admin123 |
-| Seller| Seller@gmail.com | Seller123 |
+| Seller| seller@gmail.com | Seller123 |
 
 
 ## About HealX:

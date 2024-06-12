@@ -53,7 +53,7 @@ const DiscountProducts = () => {
 
 
     return (
-        <div className=" my-24 pl-20">
+        <div className=" my-24 lg:pl-20 ">
             <h1 className="text-3xl py-20 font-semibold ">Discount Products</h1>
             <Swiper
 

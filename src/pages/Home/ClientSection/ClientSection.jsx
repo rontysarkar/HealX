@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import { Pagination,Autoplay } from 'swiper/modules';
 const ClientSection = () => {
     return (
-        <div className='my-24 pl-20'>
+        <div className='my-24 lg:pl-20'>
             <h1 className="text-3xl py-20 font-semibold">Our Customer Are Very Happy With our service</h1>
             <Swiper
             
