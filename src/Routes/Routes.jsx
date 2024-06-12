@@ -21,12 +21,14 @@ import PaymentRecord from "../pages/Dashboard/Seller/PaymentRecord";
 import MedicineManage from "../pages/Dashboard/Seller/MedicineManage";
 import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 import Invoice from "../pages/Invoice/Invoice";
+import ErrorPage from "../Sherd/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element:<Main/>,
+      errorElement:<ErrorPage/>,
       children:[
         {
             path:'/',
@@ -65,6 +67,7 @@ const router = createBrowserRouter([
     {
       path:'dashboard',
       element:<PrivateRoutes><Dashboard/></PrivateRoutes>,
+      errorElement:<ErrorPage/>,
       children:[
         // Admin routes
         { path:'adminHome',
