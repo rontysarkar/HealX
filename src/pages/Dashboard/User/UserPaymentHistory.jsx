@@ -38,7 +38,7 @@ const UserPaymentHistory = () => {
                             paymentsData?.map((payment, index) => <tr key={payment._id}>
                                 <th>{index + 1}</th>
                                 <td>{payment.email}</td>
-                                <td>{payment.price}</td>
+                                <td>{payment.price}$</td>
 
                                 <th className="text-xs">{payment.transactionId}</th>
 
