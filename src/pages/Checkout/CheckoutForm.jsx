@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useCart from "../../Hooks/useCart";
+import { useNavigate } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
 
 
 
@@ -13,23 +16,29 @@ const CheckoutForm = ({ totalPrice }) => {
     const [error, setError] = useState('')
     const [clientSecret, setClientSecret] = useState("");
     const axiosPrivate = useAxiosPrivate()
+    const [cartData,refetch] = useCart()
+    const [loading,setLoading] = useState(false)
+    const Navigate = useNavigate()
 
     useEffect(() => {
-        totalPrice && axiosPrivate.post('create-payment-intent', { price: totalPrice })
+         if(totalPrice > 0){
+            axiosPrivate.post('create-payment-intent', { price: totalPrice })
             .then(res => {
-                console.log(res.data.clientSecret)
                 setClientSecret(res.data.clientSecret)
             })
+         }
     }, [axiosPrivate, totalPrice])
 
 
     const handleSubmit = async (event) => {
+        setLoading(true)
         // Block native form submission.
         event.preventDefault();
 
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
             // form submission until Stripe.js has loaded.
+            setLoading(false)
             return;
         }
 
@@ -39,6 +48,7 @@ const CheckoutForm = ({ totalPrice }) => {
         const card = elements.getElement(CardElement);
 
         if (card == null) {
+            setLoading(false)
             return;
         }
 
@@ -50,8 +60,10 @@ const CheckoutForm = ({ totalPrice }) => {
 
         if (error) {
             console.log('[error]', error);
+            setLoading(false)
             setError(error.message)
         } else {
+            
             console.log('PaymentMethod', paymentMethod);
             setError('')
         }
@@ -69,14 +81,37 @@ const CheckoutForm = ({ totalPrice }) => {
         if (paymentIntent) {
             console.log("paymentIntent", paymentIntent)
             if (paymentIntent.status === 'succeeded') {
-               
-                Swal.fire({
+                
+
+                // Save the payment in database 
+                const payment = {
+                    email:user?.email,
+                    price:totalPrice,
+                    transactionId:paymentIntent.id,
+                    date: new Date(),
+                    cartIds: cartData.map(item=>item._id),
+                    medicineIds:cartData.map(medicine=>medicine.medicineId),
+                    status:'pending'
+                }
+
+                const {data} = await axiosPrivate.post('payment',payment)
+                console.log('payment data post ',data)
+                if(data.paymentResult.insertedId){
+                    refetch()
+                    setLoading(false)
+                    Swal.fire({
                     position: "center",
                     icon: "success",
                     title: `Your Successfully pad ${totalPrice}$`,
                     showConfirmButton: false,
                     timer: 1500
+                    
                 });
+                Navigate('/invoice')
+                }
+                
+                
+
             }
         }
         else {
@@ -87,8 +122,9 @@ const CheckoutForm = ({ totalPrice }) => {
     return (
         <>
             <h1 className=" text-xl uppercase py-10"> Total Price : {totalPrice} $</h1>
+            {loading && <div className='absolute top-1/3 right-1/2 '><FadeLoader   color="#36d7b7" /></div>}
             <form onSubmit={handleSubmit}>
-                <CardElement
+                <CardElement className="border p-4"
                     options={{
                         style: {
                             base: {

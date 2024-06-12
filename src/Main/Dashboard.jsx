@@ -69,7 +69,7 @@ const Dashboard = () => {
                         role === 'user' && <>
                             <li >
                                 <NavLink to={"/dashboard/userPaymentHistory"}>
-                                    <FaHome />Your Home
+                                    <FaHome />Payment History
                                 </NavLink>
                             </li>
                         </>

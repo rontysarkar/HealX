@@ -20,6 +20,7 @@ import Advertise from "../pages/Dashboard/Seller/Advertise";
 import PaymentRecord from "../pages/Dashboard/Seller/PaymentRecord";
 import MedicineManage from "../pages/Dashboard/Seller/MedicineManage";
 import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
+import Invoice from "../pages/Invoice/Invoice";
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         {
           path:'checkout',
           element:<Checkout/>
+        },
+        {
+          path:'invoice',
+          element:<Invoice/>
         }
       ]
     },
