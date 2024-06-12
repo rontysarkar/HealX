@@ -53,8 +53,8 @@ const DiscountProducts = () => {
 
 
     return (
-        < >
-            <h1 className="text-3xl pl-20 my-10 ">Discount Products</h1>
+        <div className=" my-24 pl-20">
+            <h1 className="text-3xl py-20 font-semibold ">Discount Products</h1>
             <Swiper
 
                 slidesPerView={4}
@@ -89,7 +89,7 @@ const DiscountProducts = () => {
 
 
             </Swiper>
-        </>
+        </div>
     );
 };
 
