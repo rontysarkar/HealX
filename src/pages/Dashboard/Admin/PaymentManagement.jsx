@@ -1,19 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 import { FaRegCheckCircle } from "react-icons/fa";
-import toast from "react-hot-toast";
 import { FaCircleCheck } from "react-icons/fa6";
+import usePayments from "../../../Hooks/usePayments";
 
 const PaymentManagement = () => {
     const axiosPrivate = useAxiosPrivate()
-
-    const {data:paymentsData =[],refetch} = useQuery({
-        queryKey:['allPayments'],
-        queryFn:async()=>{
-            const res = await axiosPrivate('payments')
-            return res.data
-        }
-    })
+    const [paymentsData,refetch] = usePayments()
+    
 
     const handlePaid = async (id) =>{
         const {data} = await axiosPrivate.patch(`payments/${id}`)
@@ -49,7 +42,7 @@ const PaymentManagement = () => {
 
                             <th className="text-xs">{payment.transactionId}</th>
 
-                            <th className={` uppercase ${payment.status === 'paid'? 'text-green-400 pl-6'  : 'text-red-600'}`}>
+                            <th className={` uppercase ${payment.status === 'paid'? 'text-green-400 pl-6'  : 'text-red-400'}`}>
                                 {payment.status}
                             </th>
                             <th >

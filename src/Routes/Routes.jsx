@@ -68,7 +68,7 @@ const router = createBrowserRouter([
       children:[
         // Admin routes
         {
-          path:'adminHome',
+          path:'/dashboard',
           element:<AdminHome/> 
         },
         {

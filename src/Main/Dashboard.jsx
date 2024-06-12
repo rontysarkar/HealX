@@ -15,32 +15,32 @@ const Dashboard = () => {
                     {
                         role === 'admin' && <>
                             <li >
-                                <NavLink to={"/dashboard/adminHome"}>
+                                <NavLink to={"/dashboard"}>
                                     <FaHome />Home
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"manageUser"}>
+                                <NavLink to={"/dashboard/manageUser"}>
                                     <FaUsers />Manage User
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"paymentManagement"}>
+                                <NavLink to={"/dashboard/paymentManagement"}>
                                     <FaUsers />Payments Management
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"manageCategory"}>
+                                <NavLink to={"/dashboard/manageCategory"}>
                                     <MdCategory />Manage Category
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"salesReport"}>
+                                <NavLink to={"/dashboard/salesReport"}>
                                     <BiSolidReport />Sales Report
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"manageBanner"}>
+                                <NavLink to={"/dashboard/manageBanner"}>
                                     <FaRegImage />Manage Banner
                                 </NavLink>
                             </li>
@@ -49,22 +49,22 @@ const Dashboard = () => {
                     {
                         role === 'seller' && <>
                             <li >
-                                <NavLink to={"/dashboard/adminHome"}>
+                                <NavLink to={"/dashboard"}>
                                     <FaHome />Home
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"manageMedicine"}>
+                                <NavLink to={"/dashboard/manageMedicine"}>
                                     <GiMedicines />Manage Medicine
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"paymentRecord"}>
+                                <NavLink to={"/dashboard/paymentRecord"}>
                                     <MdOutlinePayments />Payment History
                                 </NavLink>
                             </li>
                             <li >
-                                <NavLink to={"advertisement"}>
+                                <NavLink to={"/dashboard/advertisement"}>
                                     <RiAdvertisementLine /> Advertisement
                                 </NavLink>
                             </li>
@@ -73,7 +73,7 @@ const Dashboard = () => {
                     {
                         role === 'user' && <>
                             <li >
-                                <NavLink to={"/dashboard/userPaymentHistory"}>
+                                <NavLink to={"/dashboard"}>
                                     <FaHome />Payment History
                                 </NavLink>
                             </li>

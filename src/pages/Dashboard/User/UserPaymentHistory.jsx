@@ -40,7 +40,7 @@ const UserPaymentHistory = () => {
 
                                 <th className="text-xs">{payment.transactionId}</th>
 
-                                <th>
+                                <th className={` uppercase ${payment.status === 'paid'? 'text-green-400 pl-6'  : 'text-red-400'}`}>
                                     {payment.status}
                                 </th>
 
